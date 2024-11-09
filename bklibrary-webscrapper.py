@@ -10,11 +10,14 @@ page = htmlFile.read()
 soup = BeautifulSoup(page, "html.parser")
 
 results = soup.find_all("li", role="menuitem")
-data = [["Name", "Address"]]
+data = [["LibID", "Name", "Address"]]
+count = 0
 for li in results:
+    count += 1
     name = " ".join(li.find("h6").contents[0].split())
     addr = " ".join(li.contents[3].split())
-    library = [name, addr]
+    id = f"BK{count}"
+    library = [id, name, addr]
     print(library)
     data.append(library)
 #print(results[0].contents[])
